@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 interface Props {
-  onBack: () => void;
+  //   onBack: () => void;
   onStartGame: (names: string[], duration: number) => void;
 }
 
-export default function OturmaPlan({ onBack, onStartGame }: Props) {
+export default function OturmaPlan({ onStartGame }: Props) {
   const [names, setNames] = useState(["", "", "", ""]);
   const [shuffled, setShuffled] = useState<string[]>([]);
   const [isShuffling, setIsShuffling] = useState(false);
