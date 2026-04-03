@@ -33,12 +33,12 @@ export default function OturmaPlan({ onBack, onStartGame }: Props) {
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-8 p-8">
-      <button
+      {/* <button
         onClick={onBack}
         className="absolute top-8 left-8 text-lg border-2 border-black px-4 py-2 hover:bg-black hover:text-white transition-colors"
       >
         ← Geri
-      </button>
+      </button> */}
 
       <h1 className="text-4xl font-bold">Oturma Planı</h1>
 
