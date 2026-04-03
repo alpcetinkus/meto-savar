@@ -29,10 +29,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white flex items-center justify-center gap-8">
-      <OturmaPlani
-        onBack={() => setPage("menu")}
-        onStartGame={handleStartGame}
-      />
+      <OturmaPlani onStartGame={handleStartGame} />
       {/* Multiplayer butonu kaldırıldı */}
     </div>
   );
