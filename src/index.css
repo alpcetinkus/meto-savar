@@ -1,1 +1,23 @@
 @import "tailwindcss";
+@keyframes fall {
+  0% {
+    transform: translateY(-150px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+.rain-drop {
+  position: fixed;
+  top: 0;
+  animation: fall linear infinite;
+  pointer-events: none;
+  z-index: 50;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 40%;
+}

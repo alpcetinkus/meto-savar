@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 
 interface Props {
   onBack: () => void;
@@ -53,8 +53,32 @@ export default function Tek({ onBack, players, duration, dealerIndex }: Props) {
 
   const isFinished = timeLeft === 0;
 
+  const drops = useMemo(
+    () =>
+      Array.from({ length: 15 }, (_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        delay: Math.random() * 2,
+        duration: 1.5 + Math.random() * 2,
+      })),
+    [],
+  );
   return (
     <div className="min-h-screen flex flex-col">
+      {isFinished &&
+        drops.map((drop) => (
+          <img
+            key={drop.id}
+            src="/meto.jpeg"
+            alt="meto"
+            className="rain-drop"
+            style={{
+              left: `${drop.left}%`,
+              animationDelay: `${drop.delay}s`,
+              animationDuration: `${drop.duration}s`,
+            }}
+          />
+        ))}
       {/* %30 - Üst: Timer */}
       <div
         onClick={toggleTimer}
@@ -73,7 +97,7 @@ export default function Tek({ onBack, players, duration, dealerIndex }: Props) {
           >
             ← Menü
           </button>
-          <div className="flex gap-3">
+          <div className="flex gap-5">
             {players.map((name, i) => (
               <div
                 key={i}
@@ -82,7 +106,7 @@ export default function Tek({ onBack, players, duration, dealerIndex }: Props) {
                 }`}
               >
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border-2 border-white ${
+                  className={`w-14 h-14 rounded-full flex items-center justify-center text-base font-bold border-2 border-white ${
                     i === currentPlayer
                       ? "bg-white text-black"
                       : "bg-transparent text-white"
@@ -90,7 +114,7 @@ export default function Tek({ onBack, players, duration, dealerIndex }: Props) {
                 >
                   {i === currentDealer ? "🀄" : i + 1}
                 </div>
-                <span className="text-white text-xs mt-1 max-w-12 truncate">
+                <span className="text-white text-sm mt-1 max-w-16 truncate">
                   {name}
                 </span>
               </div>
